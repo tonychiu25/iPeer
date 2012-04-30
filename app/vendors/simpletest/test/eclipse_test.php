@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: eclipse_test.php 449 2011-02-21 22:52:09Z compass $
 
 //To run this from the eclipse plugin...you need to make sure that the 
 //SimpleTest path in the preferences is the same as the location of the 

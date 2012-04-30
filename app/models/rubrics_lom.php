@@ -1,45 +1,53 @@
 <?php
+/* SVN FILE: $Id: rubrics_lom.php 600 2011-06-23 17:49:48Z tonychiu $ */
+
 /**
- * RubricsLom
+ * Enter description here ....
  *
- * @uses AppModel
- * @package   CTLT.iPeer
- * @author    Pan Luo <pan.luo@ubc.ca>
- * @copyright 2012 All rights reserved.
- * @license   MIT {@link http://www.opensource.org/licenses/MIT}
+ * @filesource
+ * @copyright    Copyright (c) 2006, .
+ * @link
+ * @package
+ * @subpackage
+ * @since
+ * @version      $Revision: 600 $
+ * @modifiedby   $LastChangedBy$
+ * @lastmodified $Date: 2006/08/30 16:51:39 $
+ * @license      http://www.opensource.org/licenses/mit-license.php The MIT License
+ */
+
+/**
+ * RubricLom
+ *
+ * Enter description here...
+ *
+ * @package
+ * @subpackage
+ * @since
  */
 class RubricsLom extends AppModel
 {
-    public $name = 'RubricsLom';
+  var $name = 'RubricsLom';
 
-    public $belongsTo = array( 'Rubric' => array(
-        'className' => 'Rubric'
+  var $belongsTo = array( 'Rubric' => array(
+                     'className' => 'Rubric'
+                   ));
+
+  var $hasMany = array( 'RubricsCriteriaComment' => array(
+                    'className' => 'RubricsCriteriaComment',
+                    'foreignKey' => 'rubrics_loms_id',
+                    'dependent' => true,
+                    'exclusive' => true,
+                    ));
+
+  var $actsAs = array('Containable');
+
+  var $order = array('RubricsLom.lom_num' => 'ASC', 'RubricsLom.id' => 'ASC');
+  
+  function getLoms($rubricId=null, $lomId=null){
+    return $this->find('all', array(
+        'conditions' => array('RubricsLom.id' => $lomId, 'RubricsLom.rubric_id' => $rubricId)
     ));
-
-    public $hasMany = array( 'RubricsCriteriaComment' => array(
-        'className' => 'RubricsCriteriaComment',
-        'foreignKey' => 'rubrics_loms_id',
-        'dependent' => true,
-        'exclusive' => true,
-    ));
-
-    public $actsAs = array('Containable');
-
-    public $order = array('RubricsLom.lom_num' => 'ASC', 'RubricsLom.id' => 'ASC');
-
-    /**
-     * getLoms
-     *
-     * @param bool $rubricId rubric id
-     * @param bool $lomId    lom id
-     *
-     * @access public
-     * @return void
-     */
-    function getLoms($rubricId=null, $lomId=null)
-    {
-        return $this->find('all', array(
-            'conditions' => array('RubricsLom.id' => $lomId, 'RubricsLom.rubric_id' => $rubricId)
-        ));
-    }
+  }
 }
+?>

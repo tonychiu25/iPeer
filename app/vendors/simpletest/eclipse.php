@@ -3,7 +3,7 @@
  *  base include file for eclipse plugin  
  *  @package    SimpleTest
  *  @subpackage Eclipse
- *  @version    $Id$
+ *  @version    $Id: eclipse.php 449 2011-02-21 22:52:09Z compass $
  */
 /**#@+
  * simpletest include files

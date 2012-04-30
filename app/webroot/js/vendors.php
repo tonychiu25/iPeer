@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id$ */
+/* SVN FILE: $Id: vendors.php 727 2011-08-30 19:34:58Z john $ */
 /**
  * Short description for file.
  *
@@ -22,7 +22,7 @@
  * @package			cake
  * @subpackage		cake.app.webroot.js
  * @since			CakePHP v 0.2.9
- * @version			$Revision$
+ * @version			$Revision: 727 $
  * @modifiedby		$LastChangedBy: phpnut $
  * @lastmodified	$Date: 2006/06/20 18:46:20 $
  * @license			http://www.opensource.org/licenses/mit-license.php The MIT License

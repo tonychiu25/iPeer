@@ -54,7 +54,6 @@ class EvaltoolsControllerTest extends CakeTestCase {
 
   function testIndex() {
     $result = $this->testAction('/evaltools/index', array('connection' => 'test_suite', 'return' => 'contents'));
-var_dump($result);
 /*    $expected = array(
       array('Course' => array('id' => 3, 'homepage' => null, 'course' => 'Math100', 'title' => 'Math', 
                                'creator_id' => 0, 'record_status' => '', 'creator' => null),

@@ -3,7 +3,7 @@
  *  Optional include file for SimpleTest
  *  @package    SimpleTest
  *  @subpackage UnitTester
- *  @version    $Id$
+ *  @version    $Id: default_reporter.php 449 2011-02-21 22:52:09Z compass $
  */
 
 /**#@+

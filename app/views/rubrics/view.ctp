@@ -18,6 +18,10 @@
       <td colspan="3"><?php echo $data['Rubric']['criteria']; ?></td>
     </tr>
     <tr class="tablecell">
+      <td><?php __('Used by department')?>:</td>
+      <td colspan="3"><?php echo $dept; ?></td>
+    </tr>
+    <tr class="tablecell">
       <td><?php __('Rubric Availability')?>:</td>
       <td colspan="3"><?php echo $data['Rubric']['availability']; ?></td>
     </tr>

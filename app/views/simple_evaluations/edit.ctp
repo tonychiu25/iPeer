@@ -24,6 +24,20 @@
           <?php echo $readonly ? '' : $ajax->observeField('name', array('update'=>'nameErr', 'url'=>'checkDuplicateTitle/', 'frequency'=>1, 'loading'=>"Element.show('loading');", 'complete'=>"Element.hide('loading');stripe();")); ?>
           <td width="255" id="name_msg" class="error" ><div id='usernameErr' class="error"></div></td>
         </tr>
+        <!--  The department_evaluation association -->
+        <tr class="tablecell2">
+          <td>Used by department</td>
+          <td>
+            <?php
+              if ($editView) {  // In edit simpleEvaluation page
+              	echo $currentDept;
+              } else {  // In add simpleEvaluation page
+              	echo $this->Form->select('selected_dept', $departmentList, null ,array('empty' => false));
+              }
+            ?>
+    	  </td>
+          <td><font color="red">* Warning :</font> Department field cannot be changed once it has been set.</td>
+        </tr>
 
         <!-- Description -->
         <tr class="tablecell2">

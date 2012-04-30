@@ -50,6 +50,21 @@ $url = $this->action == 'copy' ? 'add' : $this->action;
       <td id="mixeval_name_msg" class="error">&nbsp;</td>
     </tr>
 
+	<!--  The department_evaluation association -->
+        <tr class="tablecell2">
+          <td>Used by department :</td>
+          <td>
+            <?php
+              if ($editView) {  // In edit simpleEvaluation page
+              	echo $currentDept;
+              } else {  // In add simpleEvaluation page
+              	echo $this->Form->select('selected_dept', $departmentList, null ,array('empty' => false));
+              }
+            ?>
+    	  </td>
+          <td><font color="red">* Warning :</font> Department field cannot be changed once it has been set.</td>
+        </tr>
+
 
     <tr class="tablecell2">
       <td><?php __('Availability')?>:</td>

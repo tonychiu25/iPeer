@@ -40,6 +40,19 @@
                                                   'readonly' => $readonly, 'label' => false, 'format' => array('before','input','after', 'error'))) ?>
     <td><?php __('eg. Intro to APSCI')?> </td>
   </tr>
+  
+  <!-- Department -->
+  <tr class="tablecell2">
+    <td width="200px">Department:&nbsp;<font color="red">*</font></td>
+    <td><?php
+       if ($editView) {
+       	 echo $currentDepartments[0]['dept'];
+       } else { 
+           echo $this->Form->select('selected_dept', $departmentList, null, array('empty' => false));
+       }
+    	 ?></td>
+    <td><font color="red">*</font> Department can not be changed once it is set.</td>
+  </tr> 
 
   <?php if('add' != $this->action):?>
   <tr class="tablecell2">

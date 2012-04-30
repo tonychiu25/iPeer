@@ -1,14 +1,1 @@
-<?php
-/**
- * Department
- *
- * @uses AppModel
- * @package   CTLT.iPeer
- * @author    Pan Luo <pan.luo@ubc.ca>
- * @copyright 2012 All rights reserved.
- * @license   MIT {@link http://www.opensource.org/licenses/MIT}
- */
-class Department extends AppModel
-{
-    public $name = 'Department';
-}
+<?phpclass Department extends AppModel {	  var $name = 'Department';  var $actsAs = array('Tree', 'Habtamable');  var $hasAndBelongsToMany = array('Course' =>                                   array('className'    => 'Course',                                         'joinTable'    => 'department_courses',                                         'foreignKey'   => 'dept_id',                                         'associationForeignKey'    =>  'course_id',                                         'conditions'   => '',                                         'order'        => '',                                         'limit'        => '',                                         'unique'       => true,                                         'finderQuery'  => '',                                         'deleteQuery'  => '',                                         'dependent'    => true,                                        )                                    );    /**   * @param : $nodeId is usually the id correspond to a faculty.   *    * Get children nodes corresponding to a faculty; for instance,   * a node corresponding to the science faculty returns the nodes   * for chem, math, phys ...ect departments.   */  function getChildren($nodeId = null) {  	return $this->children($nodeId, 'id');  }    /**   * Returns a list of all the departments(no faculties).   */  function getDepartmentList() {  	return $this->find('list', array('conditions' => array('parent_id >=' => 2),   									 'fields' => array('dept')));  }    function getDeptCourseList($deptId) {  	$department = $this->find('first', array('conditions' => array('id' => $deptId)));  	$courseId = array();  	foreach ($department['Course'] as $course) {      array_push($courseId, $course['id']);  	}  	  	return $courseId;  }    function getDepartmentById($type = '', $deptId = '', $fields = array()) {  	return $this->find($type, array('conditions' => array('id' => $deptId), 'fields' => $fields, 'recursive' => 0));  }  }?>

@@ -39,7 +39,10 @@ $evaluate = isset($evaluate) ? $evaluate : false;?>
     <td width="301"><?php echo $data['Mixeval']['name']?></td>
     <td width="353" id="mixeval_name_msg" class="error" />
   </tr>
-
+  <tr class="tablecell">
+    <td><?php __('Used by department')?>:</td>
+    <td colspan="3"><?php echo $dept; ?></td>
+  </tr>
   <tr class="tablecell2">
     <td><?php __('Number of Lickert Question')?>:</td>
     <td><?php echo $data['Mixeval']['lickert_question_max']?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

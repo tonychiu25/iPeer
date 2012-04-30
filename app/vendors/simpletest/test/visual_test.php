@@ -1,5 +1,5 @@
 <?php
-    // $Id$
+    // $Id: visual_test.php 449 2011-02-21 22:52:09Z compass $
 
     // NOTE:
     // Some of these tests are designed to fail! Do not be alarmed.

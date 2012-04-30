@@ -3,7 +3,7 @@
  *  Base include file for SimpleTest
  *  @package    SimpleTest
  *  @subpackage UnitTester
- *  @version    $Id$
+ *  @version    $Id: test_case.php 449 2011-02-21 22:52:09Z compass $
  */
 
 /**#@+

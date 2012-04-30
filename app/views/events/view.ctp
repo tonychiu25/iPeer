@@ -11,12 +11,7 @@
     </tr>
     <tr class="tablecell2">
     	<td width="150" id="course_label"><?php __('Course:')?></td>
-    	<td width="405">
-      <?php
-        $params = array('controller'=>'courses', 'coursesList'=>$coursesList, 'courseId'=>$course_id, 'view'=>1);
-        echo $this->element('courses/course_selection_box', $params);
-      ?>
-			</td>
+    	<td width="405"><?php echo $course_name;?></td>
     	<td width="243" id="course_msg" class="error"/>
     </tr>
     <tr class="tablecell2">

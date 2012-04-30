@@ -10,7 +10,7 @@
   <tr>
     <td bgcolor="#FFB66F">&nbsp;</td>
     <td class="tablecell">
-      <?php echo $this->Html->link($this->Html->image('layout/yellow_arrow.gif',array('valign'=>'middle', 'border'=>'0', 'alt'=>'yellow_arrow')).' '.__('List Evaluation Events / Results', true), '/events/goToClassList/'.$course_id, array('escape' => false))?>
+      <?php echo $this->Html->link($this->Html->image('layout/yellow_arrow.gif',array('valign'=>'middle', 'border'=>'0', 'alt'=>'yellow_arrow')).' '.__('List Evaluation Events / Results', true), '/events/index/'.$course_id, array('escape' => false))?>
     </td>
   </tr>
     <td bgcolor="#FFB66F">&nbsp;</td>

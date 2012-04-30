@@ -75,12 +75,16 @@
           var options = $$('select#RoleRole option');
           var student_field_action = "hide";
           var nonstudent_field_action = "hide";
+          var department_field_action = "hide";
 
           $F('RoleRole').each(function(selected){
             options.each(function(option) {
               if(option.value == selected) {
                 if(option.text == 'student') {
                   student_field_action = "show";
+                } else if (selected == 2 || selected == 3){
+                  nonstudent_field_action = "show";
+                  department_field_action = "show";
                 } else {
                   nonstudent_field_action = "show";
                 }
@@ -89,9 +93,23 @@
           });
           $$('tr.student_field').invoke(student_field_action);
           $$('tr.nonstudent_field').invoke(nonstudent_field_action);
+          $$('tr.department_field').invoke(department_field_action);
         }
         $('RoleRole').observe('change', updateFields);
         </script>
+
+        <!-- Department  -->
+        <tr class="tablecell2 department_field" style="display:none;">
+          <td>Department</td>
+          <td><?php
+          		if (empty($selectedDept)) {
+          		  $selectedDept = null;
+          		} 
+           		echo $this->Form->select('selected_dept', $departmentList, $selectedDept, array('empty' => false)); 
+              ?>
+          </td>
+          <td></td>
+        </tr>
 
         <!-- Title  -->
         <tr class="tablecell2 nonstudent_field" style="display:none;">

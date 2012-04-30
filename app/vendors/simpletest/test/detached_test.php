@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: detached_test.php 449 2011-02-21 22:52:09Z compass $
 require_once('../detached.php');
 require_once('../reporter.php');
 

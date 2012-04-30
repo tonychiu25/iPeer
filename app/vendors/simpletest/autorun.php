@@ -3,7 +3,7 @@
  *  Autorunner which runs all tests cases found in a file
  *  that includes this module.
  *  @package    SimpleTest
- *  @version    $Id$
+ *  @version    $Id: autorun.php 449 2011-02-21 22:52:09Z compass $
  */
 require_once dirname(__FILE__) . '/unit_tester.php';
 require_once dirname(__FILE__) . '/mock_objects.php';

@@ -1,91 +1,86 @@
 <?php
+/* SVN FILE: $Id: upgrade_controller.php 665 2011-07-25 18:20:20Z marinav $ */
+
 /**
- * UpgradeController
- *
- * @uses AppController
- * @package   CTLT.iPeer
- * @author    Pan Luo <pan.luo@ubc.ca>
- * @copyright 2012 All rights reserved.
- * @license   MIT {@link http://www.opensource.org/licenses/MIT}
+ * @filesource
+ * @copyright    Copyright (c) 2006, .
+ * @link
+ * @package
+ * @subpackage
+ * @since
+ * @license      http://www.opensource.org/licenses/mit-license.php The MIT License
  */
-class UpgradeController extends AppController
+
+/**
+ * Controller :: Upgrade
+ *
+ * @package
+ * @subpackage
+ * @since
+ */
+class UpgradeController extends Controller
 {
-    public $name = "Upgrade";
-    public $uses         = array();
-    public $components   = array('Output',
-        'framework',
-        'Session',
-        'Guard.Guard',
-        'DbPatcher'
-    );
+	var $Sanitize;
+  var $uses         = array();
+	var $components   = array('Output',
+                            'framework',
+                            'Session',
+                            'rdAuth',
+                            'DbPatcher'
+                            );
+	var $beforeFilter =	 array('preExecute');
 
-    /**
-     * __construct
-     *
-     *
-     * @access protected
-     * @return void
-     */
-    function __construct()
+  function preExecute()
+  {
+ 		$this->rdAuth->loadFromSession();
+    $this->set('rdAuth',$this->rdAuth);
+  }
+
+  function index()
+  {
+    $this->checkPermission();
+    $message  = __("You are about to upgrade your iPeer instance. ", true);
+    $message .= __("Please make sure you have backed up your database and files before proceeding!<br />", true);
+    $message .= "<a href='" . $this->webroot . "upgrade/step2'>".__('Confirm', true)."</a>";
+    $this->set('message_content', $message);
+    $this->render(null, null, 'views/pages/message.tpl.php');
+  }
+
+  function step2()
+  {
+    $this->checkPermission();
+    $dbv = $this->sysContainer->getParamByParamCode('database.version', array('parameter_value' => 0));
+
+    // patch the database
+    if(true !== ($ret = $this->DbPatcher->patch($dbv['parameter_value'])))
     {
-        $this->set('title_for_layout', __('Upgrade Database', true));
-        parent::__construct();
+        $this->set('message_content', $ret);
+        $this->render(null, null, 'views/pages/message.tpl.php');
+        return;
     }
 
+    // logout the user
+		$this->rdAuth->logout();
+		$this->Session->delete('URL');
+		$this->Session->delete('AccessErr');
+		$this->Session->delete('Message');
+		$this->Session->delete('CWLErr');
 
-    /**
-     * index
-     *
-     *
-     * @access public
-     * @return void
-     */
-    function index()
+    $message  = __("Your iPeer instance has been upgraded. Please login again.<br />", true);
+    $message .= "<a href='" . $this->webroot . "loginout/login'>".__('Login', true)."</a>";
+    $this->set('message_content', $message);
+    $this->render(null, null, 'views/pages/message.tpl.php');
+  }
+
+
+
+  function checkPermission()
+  {
+    if('A' != $this->Auth->user('role'))
     {
-        if ($this->checkPermission()) {
-            $this->set('isadmin', false); // tell view user doesn't have access
-        } else {
-            $this->set('isadmin', true);
-        }
+      $this->set('message_content', __('Sorry, you do not have access to this page. Only administrator can perform a upgrade. If you are an administrator, please login and then go to this page to perform the upgrade.', true));
+      $this->render(null, null, 'views/pages/message.tpl.php');
+      exit;
     }
-
-
-    /**
-     * step2
-     *
-     *
-     * @access public
-     * @return void
-     */
-    function step2()
-    {
-        if ($this->checkPermission()) {
-            $this->set('isadmin', false);
-        } else {
-            $this->set('isadmin', true);
-            $this->set('upgradefailed', false); // tell view the upgrade worked fine
-            $dbv = $this->SysParameter->getDatabaseVersion();
-            $ret = $this->DbPatcher->patch($dbv);
-            if ($ret) {
-                $this->set('upgradefailed', $ret);
-            }
-        }
-    }
-
-
-    /**
-     * checkPermission
-     *
-     *
-     * @access public
-     * @return void
-     */
-    function checkPermission()
-    {
-        if ('A' != $this->Auth->user('role')) {
-            $this->Session->setFlash(__('Sorry, you do not have access to this page. Only administrators can perform a database upgrade. If you are an administrator, please login and then go to this page to perform the upgrade.', true));
-            return true;
-        }
-        return false;
-    }
+  }
 }

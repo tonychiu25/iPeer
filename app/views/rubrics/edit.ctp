@@ -26,6 +26,22 @@ $url = $this->action == 'copy' ? 'add' : $this->action;
                                                   'readonly' => $readonly, 'label' => __('Name')));?>
       <td>&nbsp;</td>
     </tr>
+    
+	<!--  The department_evaluation association -->
+        <tr class="tablecell2">
+          <td>Used by department</td>
+          <td>
+            <?php
+              if ($editView) {  // In edit simpleEvaluation page
+              	echo $currentDept;
+              } else {  // In add simpleEvaluation page
+              	echo $this->Form->select('selected_dept', $departmentList, null ,array('empty' => false));
+              }
+            ?>
+    	  </td>
+          <td><font color="red">* Warning :</font> Department field cannot be changed once it has been set.</td>
+        </tr>
+
 
     <tr class="tablecell2">
       <?php echo $this->Form->input('lom_max', array('id' => 'LOM', 'class'=>'validate required TEXT_FORMAT username_msg Invalid_Text._At_Least_One_Word_Is_Required.',

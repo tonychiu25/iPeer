@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: mock_objects_test.php 449 2011-02-21 22:52:09Z compass $
 require_once(dirname(__FILE__) . '/../autorun.php');
 require_once(dirname(__FILE__) . '/../expectation.php');
 require_once(dirname(__FILE__) . '/../mock_objects.php');

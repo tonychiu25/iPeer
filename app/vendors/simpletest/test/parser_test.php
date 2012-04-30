@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: parser_test.php 449 2011-02-21 22:52:09Z compass $
 require_once(dirname(__FILE__) . '/../autorun.php');
 require_once(dirname(__FILE__) . '/../parser.php');
 Mock::generate('SimpleHtmlSaxParser');

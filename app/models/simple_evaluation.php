@@ -1,43 +1,66 @@
 <?php
-App::import('Model', 'EvaluationBase');
+/* SVN FILE: $Id: simple_evaluation.php 727 2011-08-30 19:34:58Z john $ */
+
+/**
+ * Enter description here ....
+ *
+ * @filesource
+ * @copyright    Copyright (c) 2006, .
+ * @link
+ * @package
+ * @subpackage
+ * @since
+ * @version      $Revision: 727 $
+ * @modifiedby   $LastChangedBy$
+ * @lastmodified $Date: 2006/09/25 17:31:54 $
+ * @license      http://www.opensource.org/licenses/mit-license.php The MIT License
+ */
 
 /**
  * SimpleEvaluation
  *
- * @uses EvaluationBase
- * @package   CTLT.iPeer
- * @author    Pan Luo <pan.luo@ubc.ca>
- * @copyright 2012 All rights reserved.
- * @license   MIT {@link http://www.opensource.org/licenses/MIT}
+ * Enter description here...
+ *
+ * @package
+ * @subpackage
+ * @since
  */
+App::import('Model', 'EvaluationBase');
+
 class SimpleEvaluation extends EvaluationBase
 {
-    const TEMPLATE_TYPE_ID = 1;
-    public $name = 'SimpleEvaluation';
-    // use default table
-    public $useTable = null;
-  /*public $validate = array(
-      'name' => array('rule' => 'notEmpty',
-                      'required' => true,
-                      'allowEmpty' => false),
-      'point_per_member' => 'numeric',
-  );*/
-
-/*  public $hasMany = array(
-                       'EvaluationSimple' => array(
-                        'className' => 'EvaluationSimple',
-                        'dependent' => true
-                       )
-);*/
-    public $hasMany = array(
-        'Event' =>
-        array('className'   => 'Event',
+  const TEMPLATE_TYPE_ID = 1;
+  var $name = 'SimpleEvaluation';
+  // use default table
+  var $useTable = null;
+  var $hasMany = array(
+    'Event' =>
+      array('className'   => 'Event',
             'conditions'  => array('Event.event_template_type_id' => self::TEMPLATE_TYPE_ID),
             'order'       => '',
             'foreignKey'  => 'template_id',
             'dependent'   => true,
             'exclusive'   => false,
             'finderSql'   => ''
-        ),
-    );
+           ),
+      );
+      
+  /**
+   * Apply a filter to the simple evaluation ajax list in simpleEvaluation/index; 
+   * eg math admins will return a list correspond to only math simple evaluations. 
+   */
+  function beforeFind($queryData) {
+  	$this->User = ClassRegistry::init('User');
+  	$user = $this->User->getCurrentLoggedInUser();
+	// filter only applicable to non-super admins
+  	$deptEvalTemplate = ClassRegistry::init('DepartmentEvaluationTemplate');
+  	$accessibleSimpleEvalList = $deptEvalTemplate->getEvalTemplateListByTypeAndDept(1, $user['DepartmentList']);
+  	if ($user['RolesUser'] != 1) {
+  	  $queryData['conditions']['SimpleEvaluation.id'] = $accessibleSimpleEvalList;
+  	}
+  	
+  	return $queryData;
+  }
 }
+
+?>

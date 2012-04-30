@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: adapter_test.php 449 2011-02-21 22:52:09Z compass $
 require_once(dirname(__FILE__) . '/../autorun.php');
 require_once(dirname(__FILE__) . '/../extensions/pear_test_case.php');
 require_once(dirname(__FILE__) . '/../extensions/phpunit_test_case.php');

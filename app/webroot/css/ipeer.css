@@ -1,501 +1,195 @@
-/* CSS RESET */
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 76%;
+	background: #C4C7D2;
+	background-image: url(bg.gif);
+	margin-left: 0px;
+	margin-top: 8px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+textarea {
+  overflow: visible;
+}
+form {
+  margin: 0px;
+  padding: 0px;
+}
+.bannerText {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-shadow: black 0.0em 0.0em 0.5em
+}
+#header {
+  float:left;
+  width:100%;
+  font-size:93%;
+  line-height:normal;
+  color:#333;
+  margin-bottom:1px;
+  }
+html>body #header {
+  margin-bottom:0px;
+}
+#header ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+#header li {
+  display:inline;
+  margin:0;
+  padding:0;
+  color:#333;
+  }
+#header a {
+  float:left;
+  background:url("left_both.gif") no-repeat left top;
+  font-size: 12px;
+  margin:0;
+  padding:0 0 0 9px;
+  border-bottom:1px solid #8E4501;
+  text-decoration:none;
+  color:#333;
+  }
+#header a span {
+  float:left;
+  display:block;
+  background:url("right_both.gif") no-repeat right top;
+  padding:5px 15px 4px 6px;
+  font-weight:bold;
+  }
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#header a span {float:none;}
+/* End IE5-Mac hack */
+#header a:hover span {
+  color:#333;
+  }
+#header #current a {
+  background-position:0 -300px;
+  border-width:0;
+  }
+#header #current a span {
+  background-position:100% -300px;
+  padding-bottom:5px;
+  color:#333;
+  }
+#header a:hover {
+  background-position:0% -150px;
+  }
+#header a:hover span {
+  background-position:100% -150px;
+  }
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+#subheader {
+	height: 60px;
 	margin: 0;
 	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* html5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+	vertical-align: middle;
+	border: solid #000;
+	border-width: 0px 0px 1px 0px;
 }
 
-/* Start iPeer CSS */
-
-/* GLOBAL */
-body 
-{
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	background-image: url(bg.gif);
-}
-
-p
-{
-	padding-bottom: 1em;
-}
-
-.floatleft
-{
-	float: left;
-}
-
-.floatright
-{
-	float: right;
-}
-
-.pagewidth
-{
-/* 780px is Wide enough for someone with a 800px device to 
- * view the whole app without horizontal scrolling. I assume
- * most people's computers are at least 1024x768. However
- * many smartphones have at least a 800x480 display now,
- * so we shouldn't use a higher min width.
- * */
-	min-width: 780px; 
-	max-width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 0.3em;
-}
-
-.hide
-{
-	display: none;
-}
-
-
-/* Input labels and boxes
- * This section is only for styles that apply to ALL
- * inputs. View specific styles should be added to
- * their appropriate sections, particularly, the
- * width of the text boxes.
- * */
-.text
-{
-	margin: 0 auto;
-	width: 100%;
-}
-
-.text label, .password label, .textarea label
-{
-	float: left;
-	text-align: right;
-	margin: 0.5em 0;
-	clear: left;
-}
-
-.text input, .password input, .textarea textarea
-{
-	margin: 0.5em 0; 
-	border-radius: 3px; 
-	border: 1px solid #999;
-	padding: 0.3em 0.5em;
-	clear: right;
-}
-
-.submit input
-{
-	margin-top: 1em;
-	width: 6em;
-	height: 2em;
-	font-weight: bold;
-	display: block;
-}
-
-/* BANNER */
-#banner
-{
-	border-top-left-radius: 8px; 
-	border-top-right-radius: 8px; 
-	border: 1px solid #ddd;
-	border-bottom: none;
-	background: #f4f4f4 url('../img/layout/banner_back_noborder.gif') repeat-x;
-	height: 98px;
-}
-
-#bannerLogoImgLeft
-{
-	padding-left: 1.5em;
-}
-
-#bannerLogoImgRight
-{
-	padding-right: 1.5em;
-}
-
-#bannerLogoText
-{
-	padding-top: 50px; 
-	font-size: 1em; 
-	font-weight: bold; color: white;
-	text-shadow: 0 0 7px #222
-}
-
-/* NAVIGATION */
-#navigationOuter
-{
-	border: 1px solid #ddd;
-	border-top: none;
-}
-
-.navigation ul
-{
-	padding: 0.5em 0; /* needed to expand the div, keep a from overflowing the ul */
-	background-color: #0a2a64;
-}
-
-.navigation li 
-{
-	display: inline;
-	list-style: none;
-	text-align: center;
-}
-
-.navigation a 
-{
-	border-right: 1px solid #ddd;
-	border-top: 1px solid #ddd;
-	color: white;
-	font-weight: bolder;
-	font-size: 0.85em;
-	text-align: center;
+a:link, a:visited {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #FA7E04;
 	text-decoration: none;
-	padding: 0.5em;
-	padding-left: 0.6em;
-}
+  }
+a:hover {
+  color: #333;
+  text-decoration: none;
+  }
+a:active {
+    color: #FA7E04;
+  text-decoration: none;
+  }
 
-.navigation a:hover,a:active 
-{
-	/*background-color: #ff9933;*/
-	background-color: #ff2;
-	color: #333;
-}
-
-.navigation #current a 
-{
-	color: #333;
-	background-color: #ed0;
-}
-
-.navigation .miniLinks
-{
-	font-size: 0.65em;
-	border: none;
-	margin-right: 0.5em;
-}
-
-/* CONTENT CONTAINER */
-#containerOuter
-{
-	border-top-left-radius: 10px; 
-	border-top-right-radius: 10px; 
-	border-bottom-left-radius: 10px; 
-	border-bottom-right-radius: 10px; 
-	border: 1px solid #777;
-	padding: 0.4em; 
-	background: white;
-	box-shadow: 0 0 5px #555;
-}
-
-.message, .error-message
-{
-	margin-top: 0.5em;
-	margin-bottom: 1em;
-	clear: left;
-	padding: 0.7em;
-	font-size: 0.9em;
+a.miniLinks:link, a.miniLinks:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
 	font-weight: bold;
-	text-align: center;
+	text-decoration: none;
+}
+a.miniLinks:hover {
+	color: #FA7E04;
+	text-decoration: none;
+}
+a.miniLinks:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	font-weight: bold;
 }
 
-#flashMessage, #authMessage, .error-message
-{
-	color: #990044;
-	text-align: center;
-	border: 2px solid #990044;
+#wrap {
+ width:94%; /* Change this to the width of your layout */
+ margin:0 auto;
 }
 
-.error-message
-{
-	margin-bottom: 1em;
-	padding: 0.5em;
-	width: 20em;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+.input {
+
 }
 
-.red
-{
+.error, .error_message {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
 	color: red;
 }
 
-.green
-{
-	color: green;
+/* CSS for the box starts here */
+.box {
+	padding:0 12px 0 0;
+	background:#fff url(borders.gif) 100% 0 repeat-y;
 }
-
-h1.title 
-{
-	margin-top: 0.5em;
-	font-weight: bold;
-	background: #eee;
-	border: 1px solid #ddd;
-	padding: 0.3em 0.5em;
+.bi {
+	padding:0 0 0 12px;
+	background:#fff url(borders.gif) 0 0 repeat-y;
 }
-
-h2
-{
-	margin: 1em 0;
-	font-weight: bold;
+.bt {
+	height:17px;
+	margin:0 -12px;
+	background:url(box.gif) 100% 0 no-repeat;
 }
-
-i
-{
-	font-style: italic;
+.bt div {
+	width:18px;
+	height:17px;
+	background:url(box.gif) 0 0 no-repeat;
 }
-
-/* FOOTER */
-#footer
-{
-	font-size: 0.72em;
-	padding-top: 0.5em;
-	color: #333;
-	text-align: center;
+.bb {
+	height:17px;
+	margin:0 -12px;
+	background:url(box.gif) 100% 100% no-repeat;
 }
-
-/* DEBUG */
-#debugsection
-{
-	margin: 2em;
-	font-size: 0.8em;
+.bb div {
+	width:18px;
+	height:17px;
+	background:url(box.gif) 0 100% no-repeat;
 }
-
-#debugsection h5
-{
-	padding: 0.5em;
-	font-size: 1em;
-	font-weight: bold;
-	background-color: #ccff99;
+.content-wrap {
+  background-color: #FFFFFF;
+  position: relative;
 }
-
-#debugsection pre
-{
-	padding: 0.5em;
-}
-
-#debugsection table
-{
-	width: 100%;
-}
-
-/* LOGIN BOX */
-.login
-{
-	width: 20em;
-	margin: 1em auto;
-	border: 1px solid #ccc;
-}
-
-.login h4
-{
-	background-color: #f71; 
-	padding: 0.5em;
-	color: white;
-	font-weight: bold;
-	font-size: 0.9em;
-}
-
-.login .text label, .login .password label
-{
-	width: 20%;
-}
-
-.login .text input, .login .password input
-{
-	width: 60%;
-}
-
-.login form
-{
-	padding: 1em;
-	padding-right: 0;
-}
-
-/* HOME */
-.course
-{
-	border: 1px solid #fd8;
-	margin-bottom: 1em;
-	background-color: #fec;
-}
-
-.course h3
-{
-	font-size: 0.9em;
-	font-weight: bold;
-	background-color: #fd8;
-	padding: 0.3em 0.5em;
-}
-
-.course h4
-{
-	font-size: 0.9em;
-	padding: 0.5em;
-}
-
-.course a 
-{
-	text-decoration: none;
-}
-
-.course a:hover
-{
-	text-decoration: underline;
-}
-
-.course table
-{
-	margin: 0.5em;
-	width: 100%;
-	font-size: 0.8em;
-}
-
-.course th
-{
-	width: 33%;
-	text-align: left;
-	font-weight: bold;
-	padding: 0.5em;
-}
-
-.course td
-{
-	padding: 0.5em;
-}
-
-.course img
-{
-	padding-right: 0.5em;
-}
-
-.toggle
-{
-	font-size: 0.8em;
-}
-
-#short_help h5
-{
-	font-weight: bold;
-	padding: 0.5em;
-}
-
-#short_help
-{
-	font-size: 0.8em;
-}
-
-#short_help ol
-{
-	list-style-type: decimal;
-	margin-left: 0;
-	padding-left: 3em;
-	padding-bottom: 0.5em;
-}
-
-#short_help li
-{
-	padding-bottom: 0.5em;
-}
-
-/* POPUP */
-
-#pop_title {
-	margin:0;
-	padding:0;
-	background:#f4f4f4 url(small_header_back.gif) repeat-x;
-	font:bold 1em/1 Arial, Helvetica, sans-serif;
-	color: #0A2C64;
+.title {
+	margin: 0;
+	padding:5px 10px;
+	background:#E2E2E2;
+	font:bold 1.2em/1 Arial, Helvetica, sans-serif;
 	border-top: 1px solid #CFCFCF;
 	border-bottom: 1px solid #CFCFCF;
+  position: relative;
 }
 
-/* TO BE REFACTORED LATER */
-
-/* TEMPORARY */
-/* temporary padding to be used until refactoring finished */
-table
-{
-	border-spacing: 2px;
-	border-collapse: separate;
-}
-th
-{
-	vertical-align: middle;
-	padding: 0.5em;
+.title .text {
+  text-align: left;
 }
 
-td
-{
-	vertical-align: middle;
-	padding: 0.5em;
+.title .controls {
+  text-align: right;
+  position: absolute;
+  right: 10px;
 }
 
-/* temp nav ul fix */
-#nav ul
-{
-	margin: 1em;
-}
-
-#nav li
-{
-	display: inline;
-	list-style: none;
-}
-
-#nav a
-{
-	text-decoration: none;
-	font-size: 0.9em;
-	padding: 0.2em 0.5em;
-}
-
-#nav .current a
-{
-	background-color: #ed0;
-}
-
-
-/* BOX STYLE */
 .title2 {
 	margin:0;
 	padding:2px 5px;
@@ -522,12 +216,36 @@ td
 	border-top: 1px solid #CFCFCF;
 	border-bottom: 1px solid #CFCFCF;
 }
+#pop_title {
+	margin:0;
+	padding:0;
+	background:#f4f4f4 url(small_header_back.gif) repeat-x;
+	font:bold 1em/1 Arial, Helvetica, sans-serif;
+	color: #0A2C64;
+	border-top: 1px solid #CFCFCF;
+	border-bottom: 1px solid #CFCFCF;
+}
 
+.box p, .box ul {
+	margin:0;
+	padding:4px 20px;
+	background:#fff;
+}
+.box li {
+	margin:0 0 0 2em;
+	padding:0;
+}
 .smallHeader {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
 	font-weight: bold;
 	color: #FFF;
+}
+.footer {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #333;
 }
 
 .subTable {
@@ -726,65 +444,83 @@ div.table-content li img{
 	font-weight:bold;
 }
 
-/* Home styles */
-
-
-#importfrm li {
-  margin:1em 0 3em 1em;
-}
-
-.button-row {
-  margin: 0.5em 0 0.5em 0;
-}
-
-.button-row ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  float: right;
-}
-
-.button-row li {
-  display: inline;
-  margin: 0 0 0 1em;
-  padding: 0;
-}
-
-.list-title {
-  font-weight: bold;
-  margin: 1em 0 0.5em 1em;
-}
-
-.user-list-table {
+/* Main Navigation */
+#nav {
+  padding: 5px 0 5px 0;
+	text-align: left;
+	border: solid #fff;
+	border-width: 0px 0px 0px 0px;
   width: 100%;
-  border-width: 0px;
-  border-spacing: 2px;
   background-color: white;
 }
-
-.user-list-table tr {
-  background-color: #EAEAEA;
+#nav ul {
+	margin: 0px;
+	padding: 0;
+}
+#nav li {
+	display: inline;
+	list-style: none;
+	line-height: 18px;
+  margin: 10px 0 0px 0px;
+  padding:0;
 }
 
-.user-list-table th {
-  background-color: #4478AC;
-  color: white;
-  font-size: 0.9em;
-  padding: 4px;
+#nav a {
+	color: #333;
+	font:bold 1em/1 Arial, Helvetica, sans-serif;
+	padding: 2px 2px 4px 2px;
+	text-decoration: none;
+
+}
+#nav a:hover,a:active {
+	color: #8E4501;
+	text-decoration: none;
+	margin:0;
 }
 
-.user-list-table td {
-  padding: 4px;
-  font-size: 0.9em;
+#nav .on {
+	background-color: #333;
+	color: #fff;
 }
+#nav .current a {
+  background-position:0 -300px;
+  border-width:0;
+  }
+#nav .current a span {
+  background-position:100% -300px;
+  padding: 2px 2px 4px 2px;
+  color:#fff;
+  background-color: #24588C;
+  }
+.header_link a {
+  color: #7777dd;
+}
+#header_link a:hover {
+  color: #5555bb;
+}
+/* end Main Navigation */
 
-/* No clue what these does */
 #loading {
   padding-left: 2px;
   padding-top:2px;
   position:absolute;
   float:left;
   display:none;
+}
+
+.message {
+  text-align: center;
+	margin:0;
+	padding:2px 5px;
+	background:#F4F4F4;
+	font:bold 1em/1 Arial, Helvetica, sans-serif;
+	color: red;
+	border-top: 1px solid #CFCFCF;
+	border-bottom: 1px solid #CFCFCF;
+}
+
+.error-message {
+  background: yellow;
 }
 
 #adddelcourses select.course-selector{
@@ -899,6 +635,11 @@ table.content-table {
   text-align: right;
 }
 
+.content-container {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .question {
   height: 170px;
@@ -1007,3 +748,42 @@ textarea.question-title-textarea, textarea.question-descriptor {
   text-align: right;
 }
 
+/* Home styles */
+.course {
+  margin-top: 15px;
+}
+
+.course-header {
+  color: white;
+  background-color: #4478AC;
+  padding: 3px 5px;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-decoration: underline;
+  vertical-align: top;
+}
+
+.course-header A {
+  color: white;
+  vertical-align: top;
+}
+
+.course-header IMG {
+  margin-right: 5px;
+}
+
+.course .instructor {
+  padding: 5px 0 5px 20px;
+  background-color: #EAEAEA;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+.course .event {
+  padding: 5px 0 5px 20px;
+  background-color: #EAEAEA;
+}
+
+#importfrm li {
+  margin:1em 0 3em 1em;
+}

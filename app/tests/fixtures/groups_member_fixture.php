@@ -1,29 +1,25 @@
 <?php
-/**
- * GroupsMemberFixture
- *
- * @uses CakeTestFixture
- * @package   CTLT.iPeer
- * @author    Pan Luo <pan.luo@ubc.ca>
- * @copyright 2012 All rights reserved.
- * @license   MIT {@link http://www.opensource.org/licenses/MIT}
- */
-class GroupsMemberFixture extends CakeTestFixture
-{
-    public $name = 'GroupsMember';
 
-    public $fields = array(
-        'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
-        'group_id' => array('type' => 'integer', 'null' => false, 'default' => '0', 'key' => 'index'),
-        'user_id' => array('type' => 'integer', 'null' => false, 'default' => '0'),
-    );
+class GroupsMemberFixture extends CakeTestFixture {
+  var $name = 'GroupsMember';
 
-    public $records = array(
-        array('id' => 1, 'group_id' => '1', 'user_id' => '3'),
-        array('id' => 2, 'group_id' => '1', 'user_id' => '4'),
-        array('id' => 3, 'group_id' => '2', 'user_id' => '2'),
-        array('id' => 4, 'group_id' => '2', 'user_id' => '3'),
-        array('id' => 5, 'group_id' => '2', 'user_id' => '4'),
-        array('id' => 6, 'group_id' => '4', 'user_id' => '4'),
-    );
+  var $fields = array(
+		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
+		'group_id' => array('type' => 'integer', 'null' => false, 'default' => '0', 'key' => 'index'),
+		'user_id' => array('type' => 'integer', 'null' => false, 'default' => '0'),
+		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'group_id' => array('column' => 'group_id', 'unique' => 0)),
+		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
+	);
+	
+  var $records = array(
+    array('id' => 1, 'group_id' => '1', 'user_id' => '3'),
+    array('id' => 2, 'group_id' => '1', 'user_id' => '4'),
+    array('id' => 3, 'group_id' => '2', 'user_id' => '3'),
+    array('id' => 4, 'group_id' => '2', 'user_id' => '4'),    
+  	array('id' => 5, 'group_id' => '4', 'user_id' => '4'),    
+    );	
+	
 }
+
+
+

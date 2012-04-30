@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.controller.components
@@ -721,6 +721,8 @@ class AuthComponent extends Object {
 	function user($key = null) {
 		$this->__setDefaults();
 		if (!$this->Session->check($this->sessionKey)) {
+			Debugger::log('did not find session key: '.$this->sessionKey);
+			Debugger::log($_SESSION);
 			return null;
 		}
 
@@ -883,10 +885,20 @@ class AuthComponent extends Object {
 			} else {
 				return false;
 			}
+
 			$data = $model->find('first', array(
 				'conditions' => array_merge($find, $conditions),
+				'fields' => array('RolesUser.*', 'User.*'),
+				'joins' =>  array(
+				     array('table' => 'roles_users',
+				    	   'alias' => 'RolesUser',
+				     	   'type' => 'left',
+				     	   'conditions' => array('RolesUser.user_id = User.id')		
+				     )
+				 ),
 				'recursive' => 0
 			));
+
 			if (empty($data) || empty($data[$model->alias])) {
 				return null;
 			}
@@ -903,8 +915,15 @@ class AuthComponent extends Object {
 			if (!empty($data[$model->alias][$this->fields['password']])) {
 				unset($data[$model->alias][$this->fields['password']]);
 			}
-			return $data[$model->alias];
+		// Have to manually append the the user's associated depts
+		$deptIdList = ClassRegistry::init('DepartmentUser')->getDepartmentListByUser($data['User']['id']);
+		$returnData = $data[$model->alias];
+		$returnData['DepartmentList'] = $deptIdList;
+		$returnData['RolesUser'] = $data['RolesUser']['role_id'];
+			
+		return $returnData;
 		}
+		
 		return null;
 	}
 

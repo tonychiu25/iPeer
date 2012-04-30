@@ -1,42 +1,59 @@
 <?php
+/* SVN FILE: $Id: question.php 720 2011-08-25 21:15:50Z marinav $ */
+
+/**
+ * Enter description here ....
+ *
+ * @filesource
+ * @copyright    Copyright (c) 2006, .
+ * @link
+ * @package
+ * @subpackage
+ * @since
+ * @version      $Revision: 720 $
+ * @modifiedby   $LastChangedBy$
+ * @lastmodified $Date: 2006/06/20 18:44:18 $
+ * @license      http://www.opensource.org/licenses/mit-license.php The MIT License
+ */
+
 /**
  * Question
  *
- * @uses AppModel
- * @package   CTLT.iPeer
- * @author    Pan Luo <pan.luo@ubc.ca>
- * @copyright 2012 All rights reserved.
- * @license   MIT {@link http://www.opensource.org/licenses/MIT}
+ * Enter description here...
+ *
+ * @package
+ * @subpackage
+ * @since
  */
 class Question extends AppModel
 {
-    public $name = 'Question';
-    public $displayField = 'prompt';
+  var $name = 'Question';
+  var $displayField = 'prompt';
 
-    public $hasMany = array('Response' =>
-        array('className' => 'Response',
-            'foreignKey' => 'question_id',
-            'dependent' => true)
-        );
+  var $hasMany = array('Response' =>
+                       array('className' => 'Response',
+                             'foreignKey' => 'question_id',
+                             'dependent' => true)
+                      );
 
-    public $hasAndBelongsToMany = array('Survey' =>
-        array('className'    =>  'Survey',
-            'joinTable'    =>  'survey_questions',
-            'foreignKey'   =>  'question_id',
-            'associationForeignKey'    =>  'survey_id',
-            'conditions'   =>  '',
-            'order'        =>  '',
-            'limit'        => '',
-            'unique'       => true,
-            'finderQuery'  => '',
-            'deleteQuery'  => '',
-            'dependent'    => false,
-        ),
-    );
+  var $hasAndBelongsToMany = array('Survey' =>
+                                   array('className'    =>  'Survey',
+                                         'joinTable'    =>  'survey_questions',
+                                         'foreignKey'   =>  'question_id',
+                                         'associationForeignKey'    =>  'survey_id',
+                                         'conditions'   =>  '',
+                                         'order'        =>  '',
+                                         'limit'        => '',
+                                         'unique'       => true,
+                                         'finderQuery'  => '',
+                                         'deleteQuery'  => '',
+                                         'dependent'    => false,
+                                        ),
+                       );
 
-    public $actsAs = array('ExtendAssociations', 'Containable', 'Habtamable');
+  var $actsAs = array('ExtendAssociations', 'Containable', 'Habtamable');
 
-    // prepares the data by moving varibles in the form to the data question sub array
+  // prepares the data by moving varibles in the form to the data question sub array
   /*function prepData($data)
   {
     $data['data']['Question']['master'] = $data['form']['master'];
@@ -46,57 +63,39 @@ class Question extends AppModel
     return $data;
   }*/
 
-    /**
-     * sets the data variable up with proper formating in the array for display
-     *
-     * @param array $data : $data obtained as return value from
-     * 					  SurveyQuestion::getQuestionsID($survey_id);
-     *
-     * @access public
-     * @return void
-     */
-    function fillQuestion($data)
-    {
-        for ($i=0; $i<count($data); $i++) {
-            $data[$i]['Question'] = $this->find('all', array('conditions' => array('id' => $data[$i]['SurveyQuestion']['question_id']),
-                'fields' => array('prompt', 'type')));
-            $data[$i]['Question'] = $data[$i]['Question'][0]['Question'];
-            $data[$i]['Question']['number'] = $data[$i]['SurveyQuestion']['number'];
-            $data[$i]['Question']['id'] = $data[$i]['SurveyQuestion']['question_id'];
-            $data[$i]['Question']['sq_id'] = $data[$i]['SurveyQuestion']['id'];
-            unset($data[$i]['SurveyQuestion']);
-        }
-        return $data;
+  /**
+   * sets the data variable up with proper formating in the array for display
+   * @param array_$data : $data obtained as return value from 
+   * 					  SurveyQuestion::getQuestionsID($survey_id);
+   */
+  function fillQuestion($data)
+  {
+    for( $i=0; $i<$data['count']; $i++ ){
+      $data[$i]['Question'] = $this->find('all',array('conditions' => array('id' => $data[$i]['SurveyQuestion']['question_id']),
+      									  			  'fields' => array('prompt', 'type')));
+      $data[$i]['Question'] = $data[$i]['Question'][0]['Question'];
+      $data[$i]['Question']['number'] = $data[$i]['SurveyQuestion']['number'];
+      $data[$i]['Question']['id'] = $data[$i]['SurveyQuestion']['question_id'];
+      $data[$i]['Question']['sq_id'] = $data[$i]['SurveyQuestion']['id'];
+	  unset($data[$i]['SurveyQuestion']);
     }
+    return $data;
+  }
 
+//  // delete old question references in each table
+//  function editCleanUp($question_id)
+//  {
+//  		$this->query('DELETE FROM questions WHERE id='.$question_id);
+//		$this->query('DELETE FROM responses WHERE question_id='.$question_id);
+//		$this->query('DELETE FROM survey_questions WHERE question_id='.$question_id);
+//  }
 
-    //  // delete old question references in each table
-    //  function editCleanUp($question_id)
-    //  {
-    //  		$this->query('DELETE FROM questions WHERE id='.$question_id);
-    //		$this->query('DELETE FROM responses WHERE question_id='.$question_id);
-    //		$this->query('DELETE FROM survey_questions WHERE question_id='.$question_id);
-    //  }
-
-    /**
-     * getTypeById
-     *
-     * @param bool $id
-     *
-     * @access public
-     * @return string question type, null if id = null
-     */
-    function getTypeById($id = null)
-    {
-        if (null == $id) {
-            return null;
-        }
-
-        $type = $this->find('first', array(
-            'conditions' => array('Question.id' => $id),
-            'fields' => array('type')
-        ));
-        return $type['Question']['type'];
-    }
-
+  function getTypeById($id=null) {
+    $type = $this->find('first', array(
+        'conditions' => array('Question.id' => $id),
+        'fields' => array('type')
+    ));
+    return $type['Question']['type'];
+  }
 }
+?>

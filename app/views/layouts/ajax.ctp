@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id$ */
+/* SVN FILE: $Id: ajax.ctp 727 2011-08-30 19:34:58Z john $ */
 
 /**
  *
@@ -22,7 +22,7 @@
  * @package      cake
  * @subpackage   cake.cake.libs.view.templates.layouts
  * @since        CakePHP v 0.10.0.1076
- * @version      $Revision$
+ * @version      $Revision: 727 $
  * @modifiedby   $LastChangedBy: phpnut $
  * @lastmodified $Date: 2006/06/20 18:44:55 $
  * @license      http://www.opensource.org/licenses/mit-license.php The MIT License

@@ -1,31 +1,41 @@
 <?php
+/* SVN FILE: $Id: survey_group_member.php 484 2011-05-20 23:22:42Z tae $ */
+
 /**
- * SurveyGroupMember
+ * Enter description here ....
  *
- * @uses AppModel
- * @package   CTLT.iPeer
- * @author    Pan Luo <pan.luo@ubc.ca>
- * @copyright 2012 All rights reserved.
- * @license   MIT {@link http://www.opensource.org/licenses/MIT}
+ * @filesource
+ * @copyright    Copyright (c) 2006, .
+ * @link
+ * @package
+ * @subpackage
+ * @since
+ * @version      $Revision: 484 $
+ * @modifiedby   $LastChangedBy$
+ * @lastmodified $Date: 2006/06/20 18:44:19 $
+ * @license      http://www.opensource.org/licenses/mit-license.php The MIT License
+ */
+
+/**
+ * Survey
+ *
+ * Enter description here...
+ *
+ * @package
+ * @subpackage
+ * @since
  */
 class SurveyGroupMember extends AppModel
 {
-    public $name = 'SurveyGroupMember';
+    var $name = 'SurveyGroupMember';
 
-    /**
-     * getIdsByGroupSetId
-     *
-     * @param bool $groupSetId
-     *
-     * @access public
-     * @return void
-     */
-    function getIdsByGroupSetId($groupSetId=null)
-    {
-        //return $this->find('all', 'group_set_id='.$groupSetId, 'id');
+    function getIdsByGroupSetId($groupSetId=null) {
+      //return $this->find('all','group_set_id='.$groupSetId,'id');
         return $this->find('all', array(
             'conditions' => array('group_set_id' => $groupSetId),
             'fields' => array('SurveyGroupMember.id')
         ));
     }
 }
+
+?>

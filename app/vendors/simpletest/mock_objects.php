@@ -3,7 +3,7 @@
  *  base include file for SimpleTest
  *  @package    SimpleTest
  *  @subpackage MockObjects
- *  @version    $Id$
+ *  @version    $Id: mock_objects.php 449 2011-02-21 22:52:09Z compass $
  */
 
 /**#@+
